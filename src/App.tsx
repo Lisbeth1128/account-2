@@ -3,8 +3,9 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Layout from './components/Layout'
-
+import Tags from './views/Tags'
+import Money from './views/Money'
+import Statistics from './views/Statistics'
 
 
 
@@ -27,33 +28,5 @@ function App() {
     </div>
   );
 }
-function Money() {
-  return (
-    <>
-      <Layout>
-        <h2>记账页</h2>
-      </Layout>
-    </>
-  );
-}
 
-function Tags() {
-  return (
-    <>
-      <Layout>
-        <h2>标签页</h2>
-      </Layout>
-    </>
-  );
-}
-
-function Statistics() {
-  return (
-    <>
-      <Layout>
-        <h2>统计页</h2>
-      </Layout>
-    </>
-  );
-}
 export default App;
