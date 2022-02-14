@@ -6,12 +6,16 @@ import {
 import Tags from './views/Tags'
 import Money from './views/Money'
 import Statistics from './views/Statistics'
+import styled from "styled-components";
 
 
+const AppWrapper = styled.div`
+  color: #333;
+`
 
 function App() {
   return (
-    <div className="App">
+    <AppWrapper>
       <Routes>
         <Route index element={<Money />} />
         <Route path="/tags" element={<Tags />} />
@@ -25,7 +29,7 @@ function App() {
           }
         />
       </Routes>
-    </div>
+    </AppWrapper>
   );
 }
 
