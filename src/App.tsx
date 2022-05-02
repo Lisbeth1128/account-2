@@ -7,6 +7,7 @@ import Tags from './views/Tags'
 import Money from './views/Money'
 import Statistics from './views/Statistics'
 import styled from "styled-components";
+import { Tag } from "views/Tag";
 
 
 const AppWrapper = styled.div`
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route index element={<Money />} />
         <Route path="/tags" element={<Tags />} />
+        <Route path="/tags/:tag" element={<Tag />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route
           path="*"
