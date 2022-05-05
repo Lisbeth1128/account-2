@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route index element={<Money />} />
         <Route path="/tags" element={<Tags />} />
-        <Route path="/tags/:tag" element={<Tag />} />
+        <Route path="/tags/:id" element={<Tag />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route
           path="*"
