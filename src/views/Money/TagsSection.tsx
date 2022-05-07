@@ -66,7 +66,7 @@ const TagsSection: React.FC<Props> = (props) => {
           <li key={tag.id} onClick={
             ()=>{onToggleTag(tag.id)}
           } className={getClass(tag.id)}
-          >{tag}</li>
+          >{tag.name}</li>
         )}
       </ol>
       <button onClick={onAddTag}>新增标签</button>
