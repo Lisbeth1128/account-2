@@ -5,7 +5,7 @@ import { Input } from 'components/Input'
 import Layout from 'components/Layout'
 import { Space } from 'components/Space'
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import {useTags} from 'useTags'
 
@@ -50,10 +50,14 @@ const Tag: React.FC = () => {
         </Center>
       </div>
     )
+    const navigate = useNavigate()
+    const onClickBack = () => {
+      navigate(-1)
+    }
     return (
       <Layout>
         <Topbar>
-          <Icon name="left" />
+          <Icon name="left" onClick={onClickBack}/>
           <span>编辑标签</span>
           <Icon />
         </Topbar>
