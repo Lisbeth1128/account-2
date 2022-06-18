@@ -2,6 +2,7 @@
   "name": "account-2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lisbeth1128.github.io/account-2-website/",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
