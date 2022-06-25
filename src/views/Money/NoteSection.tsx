@@ -1,5 +1,5 @@
 import { Input } from "components/Input";
-import { ChangeEventHandler} from "react";
+import { ChangeEventHandler } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -9,19 +9,26 @@ const Wrapper = styled.section`
 `
 type Props = {
   value: string,
+  date: string,
   onChange: (value: string) => void
 }
 
 const NoteSection: React.FC<Props> = (props) => {
-  //const [note, setNote] = useState('')
   const note = props.value
-  const onChange:ChangeEventHandler<HTMLInputElement> = (e) => {
-      props.onChange(e.target.value)
+  const createdAt = props.date
+  const onValueChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    props.onChange(e.target.value)
+  }
+  const onDateChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    props.onChange(e.target.value)
   }
   return (
     <Wrapper>
-      <Input label="备注" type="text" value={note} onChange={onChange}
-              placeholder="请填写备注"
+      <Input label="备注" type="text" value={note} onChange={onValueChange}
+        placeholder="请填写备注"
+      />
+      <Input label="日期" type="date" value={createdAt} onChange={onDateChange}
+        placeholder="请填写日期"
       />
     </Wrapper>
   )
