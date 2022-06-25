@@ -49,8 +49,11 @@ function Money() {
       <MyLayout scrollTop={9999}>
         <TagsSection value={selected.tagIds}
           onChange={tagIds => onChange({ tagIds })} />
-        <NoteSection value={selected.note} date={dayjs(selected.createdAt).format('YYYY-MM-DD')}
-          onChange={note => onChange({ note })} />
+        <NoteSection value={selected.note}
+          date={dayjs(selected.createdAt).format('YYYY-MM-DD')}
+          onValueChange={note => onChange({ note })} 
+          onDateChange={createdAt => onChange({ createdAt })} 
+          />
         <CategoryWrapper>
           <CategorySection value={selected.category}
             onChange={category => onChange({ category })} />

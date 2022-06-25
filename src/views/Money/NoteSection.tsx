@@ -10,17 +10,18 @@ const Wrapper = styled.section`
 type Props = {
   value: string,
   date: string,
-  onChange: (value: string) => void
+  onValueChange: (value: string) => void,
+  onDateChange: (value: string) => void
 }
 
 const NoteSection: React.FC<Props> = (props) => {
   const note = props.value
   const createdAt = props.date
   const onValueChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    props.onChange(e.target.value)
+    props.onValueChange(e.target.value)
   }
   const onDateChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    props.onChange(e.target.value)
+    props.onDateChange(e.target.value)
   }
   return (
     <Wrapper>
