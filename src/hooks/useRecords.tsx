@@ -9,7 +9,6 @@ export type RecordItem = {
     createdAt: string
 }
 
-type newRecordItem = Omit<RecordItem, 'createdAt'>
 
 export const useRecords = () => {
     const [records, setRecords] = useState<RecordItem[]>([])
@@ -20,7 +19,7 @@ export const useRecords = () => {
         window.localStorage.setItem('records', JSON.stringify(records))
     }, records)
 
-    const addRecord = (newRecord: newRecordItem) => {
+    const addRecord = (newRecord: RecordItem) => {
         if(newRecord.amount <= 0){
             alert('请输入金额')
             return false
@@ -29,7 +28,7 @@ export const useRecords = () => {
             alert('请选择标签')
             return false
         }
-        const record = {...newRecord, createdAt: (new Date()).toISOString()}
+        const record = {...newRecord, createdAt: newRecord.createdAt || (new Date()).toISOString()}
         setRecords([...records, record])
         return true
     }
