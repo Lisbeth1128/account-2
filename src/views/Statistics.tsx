@@ -117,7 +117,8 @@ function Statistics() {
   useEffect(() => {
     if(wrapper.current === null) {return}
     console.log(wrapper.current.scrollLeft)
-    wrapper.current.scrollLeft = 9999
+    const div = wrapper.current
+    div.scrollLeft = div.scrollWidth
   }, [])
 
   return (
