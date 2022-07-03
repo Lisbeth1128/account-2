@@ -63,7 +63,10 @@ function Statistics() {
 
   const [option] = useState({
     tooltip: {
-      show: true
+      show: true,
+      triggerOn: 'click',
+      position: 'top',
+      formatter: '{c}'
     },
     grid: {
       left: 0,
