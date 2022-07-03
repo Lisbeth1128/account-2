@@ -32,6 +32,9 @@ const Header = styled.h3`
 
 const ChartWrapper = styled.div`
   overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 
