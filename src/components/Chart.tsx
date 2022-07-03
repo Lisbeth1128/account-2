@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
+import styled from 'styled-components';
 
+const Graph = styled.div`
+  width: 430%!important;
+`
 
 const Chart = (props: any) => {
   const {option} = props
@@ -17,7 +21,7 @@ const Chart = (props: any) => {
     chart.current.setOption(option)
   }, [option])
   return (
-    <div ref={container} />
+      <Graph ref={container} />
   )
 }
 

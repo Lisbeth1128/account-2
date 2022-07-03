@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 import { RecordItem, useRecords } from 'hooks/useRecords';
 import { useTags } from 'hooks/useTags';
@@ -30,6 +30,10 @@ const Header = styled.h3`
   padding: 10px 16px;
 `
 
+const ChartWrapper = styled.div`
+  overflow: auto;
+`
+
 
 function Statistics() {
   const [category, setCategory] = useState<'-' | '+'>('-')
@@ -55,31 +59,51 @@ function Statistics() {
   })
 
   const [option] = useState({
-    title: {
-      text: 'ECharts 入门示例'
+    tooltip: {
+      show: true
     },
-    tooltip: {},
+    grid: {
+      left: 0,
+      right: 0
+    },
     xAxis: {
-      data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      type: 'category',
+      data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+             '21', '22', '23', '24', '25', '26', '27', '28', '29' , '30']
     },
-    yAxis: {},
+    yAxis: {
+      type: 'value',
+      show: false
+    },
     series: [
       {
-        name: '销量',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
+        type: 'line',
+        data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20,
+               5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20,
+               5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20]
       }
     ]
   })
 
+  const wrapper = useRef(ChartWrapper)
+  useEffect(() => {
+    if(wrapper.current === null) {return}
+    console.log(wrapper.current.scrollLeft)
+    wrapper.current.scrollLeft = 9999
+  }, [])
+
   return (
     <>
       <Layout>
-        <Chart option={option}/>
         <CategoryWrapper>
           <CategorySection value={category}
-            onChange={value => setCategory(value)} />
+            onChange={value => setCategory(value)} 
+          />
         </CategoryWrapper>
+        <ChartWrapper ref={wrapper}>
+          <Chart option={option}/>
+        </ChartWrapper>
         {array.map(([date, records]) => <div>
           <Header>{date}</Header>
           <div>
