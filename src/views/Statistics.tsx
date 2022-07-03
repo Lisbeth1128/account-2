@@ -76,11 +76,22 @@ function Statistics() {
              '21', '22', '23', '24', '25', '26', '27', '28', '29' , '30'],
       axisTick: {
         alignWithLabel: true
+      },
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#666'
+        }
       }
     },
     yAxis: {
       type: 'value',
-      show: false
+      show: false,
+      itemStyle: {
+        borderWidth: 1,
+        color: '#666',
+        borderColor: '#666'
+      }
     },
     series: [
       {
@@ -88,7 +99,13 @@ function Statistics() {
         type: 'line',
         data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10,
                5, 20, 36, 10, 10, 20, 5, 20, 36, 10,
-               5, 20, 36, 10, 10, 20, 5, 20, 36, 10]
+               5, 20, 36, 10, 10, 20, 5, 20, 36, 10],
+        symbol: 'circle',
+        itemStyle: {
+          borderWidth: 1,
+          color: '#666',
+          borderColor: '#666'
+        }
       }
     ]
   })
