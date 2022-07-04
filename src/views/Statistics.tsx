@@ -112,6 +112,11 @@ function Statistics() {
         lineStyle: {
           color: '#666'
         }
+      },
+      axisLabel: {
+        formatter: function(value: string, index: number){
+          return value.substring(5)
+        }
       }
     },
     yAxis: {
