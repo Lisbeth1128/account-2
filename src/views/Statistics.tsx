@@ -62,7 +62,7 @@ function Statistics() {
     return 0
   })
 
-  const y = () => {
+  const keyValueList = () => {
     const today = new Date()
     const array = []
     for(let i = 0; i <= 29; i++){
@@ -71,14 +71,14 @@ function Statistics() {
         createdAt : dateString
       })
       array.push({
-        date: dateString,
+        key: dateString,
         value: found ? found.amount : 0
       })
     }
     array.sort((a, b) => {
-      if(a.date > b.date){
+      if(a.key > b.key){
         return 1
-      }else if(a.date === b.date){
+      }else if(a.key === b.key){
         return 0
       }else{
         return -1
@@ -87,10 +87,10 @@ function Statistics() {
     return array
   }
 
-  const keys = y().map(item => item.date)
-  const values = y().map(item => item.value)
+  const keys = keyValueList().map(item => item.key)
+  const values = keyValueList().map(item => item.value)
 
-  const option = {
+  const chartOptions = {
     tooltip: {
       show: true,
       triggerOn: 'click',
@@ -159,7 +159,7 @@ function Statistics() {
           />
         </CategoryWrapper>
         <ChartWrapper ref={wrapper}>
-          <Chart option={option}/>
+          <Chart option={chartOptions}/>
         </ChartWrapper>
         {array.map(([date, records]) => <div>
           <Header>{date}</Header>
