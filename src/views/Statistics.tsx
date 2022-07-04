@@ -113,11 +113,10 @@ function Statistics() {
     ]
   })
 
-  const wrapper = useRef(ChartWrapper)
+  const wrapper = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if(wrapper.current === null) {return}
-    console.log(wrapper.current.scrollLeft)
     const div = wrapper.current
+    if(div === null) {return}
     div.scrollLeft = div.scrollWidth
   }, [])
 
