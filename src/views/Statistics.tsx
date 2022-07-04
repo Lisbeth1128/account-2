@@ -6,6 +6,7 @@ import { useTags } from 'hooks/useTags';
 import { CategorySection } from './Money/CategorySection';
 import day from 'dayjs'
 import { Chart } from 'components/Chart';
+import _ from 'lodash'
 
 const CategoryWrapper = styled.div`
   background-color: white;
@@ -61,7 +62,35 @@ function Statistics() {
     return 0
   })
 
-  const [option] = useState({
+  const y = () => {
+    const today = new Date()
+    const array = []
+    for(let i = 0; i <= 29; i++){
+      const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD')
+      const found = _.find(records, {
+        createdAt : dateString
+      })
+      array.push({
+        date: dateString,
+        value: found ? found.amount : 0
+      })
+    }
+    array.sort((a, b) => {
+      if(a.date > b.date){
+        return 1
+      }else if(a.date === b.date){
+        return 0
+      }else{
+        return -1
+      }
+    })
+    return array
+  }
+
+  const keys = y().map(item => item.date)
+  const values = y().map(item => item.value)
+
+  const option = {
     tooltip: {
       show: true,
       triggerOn: 'click',
@@ -74,9 +103,7 @@ function Statistics() {
     },
     xAxis: {
       type: 'category',
-      data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-             '21', '22', '23', '24', '25', '26', '27', '28', '29' , '30'],
+      data: keys,
       axisTick: {
         alignWithLabel: true
       },
@@ -100,10 +127,8 @@ function Statistics() {
       {
         symbolSize: 12,
         type: 'line',
-        data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10,
-               5, 20, 36, 10, 10, 20, 5, 20, 36, 10,
-               5, 20, 36, 10, 10, 20, 5, 20, 36, 10],
         symbol: 'circle',
+        data: values,
         itemStyle: {
           borderWidth: 1,
           color: '#666',
@@ -111,7 +136,7 @@ function Statistics() {
         }
       }
     ]
-  })
+  }
 
   const wrapper = useRef<HTMLDivElement>(null)
   useEffect(() => {

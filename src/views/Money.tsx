@@ -23,7 +23,7 @@ const defaultFormData = {
   note: '',
   category: '-' as Category,
   amount: 0,
-  createdAt: new Date().toISOString()
+  createdAt: new Date().toISOString().substring(0, 10)
 }
 
 function Money() {

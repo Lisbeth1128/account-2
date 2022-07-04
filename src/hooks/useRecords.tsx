@@ -28,7 +28,7 @@ export const useRecords = () => {
             alert('请选择标签')
             return false
         }
-        const record = {...newRecord, createdAt: newRecord.createdAt || (new Date()).toISOString()}
+        const record = {...newRecord, createdAt: newRecord.createdAt.substring(0, 10) || (new Date()).toISOString().substring(0, 10)}
         setRecords([...records, record])
         return true
     }
