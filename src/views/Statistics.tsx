@@ -7,6 +7,8 @@ import { CategorySection } from './Money/CategorySection';
 import day from 'dayjs'
 import { Chart } from 'components/Chart';
 import _ from 'lodash'
+import clone from 'lib/clone';
+import dayjs from 'dayjs';
 
 const CategoryWrapper = styled.div`
   background-color: white;
@@ -142,6 +144,37 @@ function Statistics() {
       }
     ]
   }
+
+  const groupedList = () => {
+    const newList = clone(selectedRecords).sort((a, b) => {
+      if(a.createdAt < b.createdAt){
+        return -1
+      }else if(a.createdAt === b.createdAt){
+        return 0
+      }else{
+        return 1
+      }
+    })
+    let previousDate
+    let outputs = []
+    for(let i = 0; i < newList.length; i++){
+      if(newList[i].createdAt === previousDate){
+        outputs[outputs.length - 1].value += newList[i].amount
+      }else{
+        outputs.push({date: newList[i].createdAt, value: newList[i].amount})
+        previousDate = newList[i].createdAt
+      }  
+    }
+    console.log("outputs")
+    console.log(outputs)
+    console.log("newList")
+    console.log(newList)
+    console.log("selectedRecords")
+    console.log(selectedRecords)
+    return outputs
+  }
+
+  groupedList()
 
   const wrapper = useRef<HTMLDivElement>(null)
   useEffect(() => {
